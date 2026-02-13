@@ -3,755 +3,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE GARAGE · San Francisco</title>
-    <link href="https://fonts.cdnfonts.com/css/tasa-orbiter-display" rel="stylesheet">
+    <title>The Garage · San Francisco</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: crosshair;
         }
 
         :root {
-            --bg: #1a1a1a;
-            --text: #e5e5e5;
-            --text-secondary: #a1a1a6;
-            --accent: #007aff;
-            --red: #ff0033;
-            --border: #2c2c2e;
-            --border-hover: #007aff;
-            --bg-secondary: #2c2c2e;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.6);
-        }
-
-        html, body {
-            min-height: 100vh;
-            overflow-x: hidden;
-            overflow-y: auto;
+            --bg: #f5f5f0;
+            --text: #1a1a1a;
+            --text-secondary: #666666;
+            --red: #d32f2f;
         }
 
         body {
-            font-family: 'TASA Orbiter Display', 'TASA Orbiter Text', sans-serif;
+            font-family: 'Libre Baskerville', serif;
             background: var(--bg);
             color: var(--text);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            font-weight: 400;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 48px;
-            position: relative;
-            line-height: 1.5;
-        }
-        
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(
-                    to bottom,
-                    rgba(255, 255, 255, 0) 0%,
-                    rgba(255, 255, 255, 0) 50%,
-                    rgba(255, 255, 255, 0.15) 100%
-                ),
-                url('runway.png');
-            background-size: cover;
-            background-position: center 35%;
-            background-repeat: no-repeat;
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(
-                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-                rgba(255, 0, 51, 0.02) 0%,
-                transparent 100%
-            );
-            pointer-events: none;
-            z-index: 1;
-            will-change: background;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms;
-                animation-iteration-count: 1;
-                transition-duration: 0.01ms;
-            }
-        }
-
-        main {
+            padding: 60px 32px 120px 32px;
             max-width: 680px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-        
-        button, a {
-            cursor: crosshair;
+            line-height: 1.65;
+            font-size: 18px;
         }
 
-        h1 {
-            font-size: clamp(2.5rem, 7vw, 4rem);
+        @media (max-width: 640px) {
+            body {
+                padding: 40px 24px 80px 24px;
+                font-size: 16px;
+            }
+        }
+
+        .landing {
+            font-size: clamp(1.125rem, 2.5vw, 1.35rem);
             font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-            text-transform: none;
-            color: var(--text);
-            text-shadow: 
-                0 0 10px rgba(255, 0, 51, 0.5),
-                0 0 20px rgba(255, 0, 51, 0.3),
-                0 0 30px rgba(255, 0, 51, 0.2);
-            animation: glitchText 8s infinite;
-            transition: filter 0.3s ease;
-        }
-        
-        h1:hover {
-            filter: 
-                contrast(1.2)
-                brightness(1.1)
-                blur(0.5px);
-            animation: pixelate 0.15s steps(4) infinite, glitchText 8s infinite;
-        }
-        
-        @keyframes pixelate {
-            0% {
-                filter: 
-                    contrast(1.2)
-                    brightness(1.1)
-                    blur(0.5px);
-            }
-            50% {
-                filter: 
-                    contrast(1.3)
-                    brightness(1.2)
-                    blur(1px);
-            }
-            100% {
-                filter: 
-                    contrast(1.2)
-                    brightness(1.1)
-                    blur(0.5px);
-            }
-        }
-        
-        @keyframes glitchText {
-            0%, 88%, 100% {
-                text-shadow: 
-                    0 0 10px rgba(255, 0, 51, 0.5),
-                    0 0 20px rgba(255, 0, 51, 0.3),
-                    0 0 30px rgba(255, 0, 51, 0.2);
-            }
-            89% {
-                text-shadow: 
-                    2px 0 0 rgba(255, 0, 51, 0.8),
-                    -2px 0 0 rgba(0, 255, 255, 0.8),
-                    0 2px 0 rgba(0, 255, 0, 0.6),
-                    0 0 20px rgba(255, 0, 51, 0.5);
-            }
-            90% {
-                text-shadow: 
-                    0 0 10px rgba(255, 0, 51, 0.5),
-                    0 0 20px rgba(255, 0, 51, 0.3);
-            }
-            91% {
-                text-shadow: 
-                    -1px 0 0 rgba(0, 100, 255, 0.8),
-                    1px 0 0 rgba(0, 255, 100, 0.7),
-                    0 0 25px rgba(255, 0, 51, 0.6);
-            }
-            92% {
-                text-shadow: 
-                    0 0 10px rgba(255, 0, 51, 0.5),
-                    0 0 20px rgba(255, 0, 51, 0.3);
-            }
-            93% {
-                text-shadow: 
-                    1px 1px 0 rgba(255, 0, 51, 0.8),
-                    -1px -1px 0 rgba(0, 200, 255, 0.8),
-                    0 0 20px rgba(0, 255, 100, 0.4);
-            }
-            94%, 100% {
-                text-shadow: 
-                    0 0 10px rgba(255, 0, 51, 0.5),
-                    0 0 20px rgba(255, 0, 51, 0.3),
-                    0 0 30px rgba(255, 0, 51, 0.2);
-            }
-        }
-        
-        h1 .letter {
-            display: inline-block;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            will-change: transform;
+            font-style: italic;
+            line-height: 1.35;
+            margin-bottom: 3rem;
         }
 
-        .subtitle {
-            font-size: clamp(1.125rem, 2.2vw, 1.5rem);
-            font-weight: 400;
-            font-style: normal;
-            color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-            text-transform: none;
-            letter-spacing: -0.01em;
-            line-height: 1.4;
-            animation: subtleGlitch 12s infinite;
-        }
-        
-        @keyframes subtleGlitch {
-            0%, 95%, 100% {
-                text-shadow: none;
-            }
-            96% {
-                text-shadow: 
-                    1px 0 0 rgba(255, 0, 51, 0.5),
-                    -1px 0 0 rgba(0, 255, 255, 0.5);
-            }
-            97% {
-                text-shadow: none;
-            }
-            98% {
-                text-shadow: 
-                    0 1px 0 rgba(0, 200, 255, 0.6),
-                    0 -1px 0 rgba(0, 255, 100, 0.5);
-            }
-            99% {
-                text-shadow: none;
-            }
-        }
-        
-        .subtitle .letter {
-            display: inline-block;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            will-change: transform;
-        }
-
-        .meta {
-            font-size: clamp(0.875rem, 1.6vw, 1rem);
-            color: var(--text-secondary);
-            letter-spacing: 0.02em;
-            text-transform: lowercase;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-        
-        .meta .letter {
-            display: inline-block;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            will-change: transform;
-        }
-        
-        .why-link {
-            display: inline-block;
-            font-size: clamp(0.875rem, 1.6vw, 1rem);
-            color: var(--text);
-            background: transparent;
-            text-decoration: underline;
-            text-decoration-color: var(--red);
-            text-underline-offset: 3px;
-            text-decoration-thickness: 1.5px;
-            cursor: pointer;
-            letter-spacing: 0.01em;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        /* Section dividers */
+        hr {
             border: none;
+            border-top: 1px solid #d5d5d0;
+            margin: 4rem 0;
+        }
+
+        h2 {
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+
+        .roman-list {
+            list-style: none;
             padding: 0;
         }
-        
-        .why-link:hover {
-            color: var(--red);
-            text-decoration-thickness: 2px;
+
+        .roman-list li {
+            margin-bottom: 1.25rem;
+            padding-left: 2.5rem;
+            position: relative;
         }
-        
-        .why-link:focus {
-            outline: none;
-            color: var(--red);
+
+        .roman-list li .numeral {
+            position: absolute;
+            left: 0;
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            top: 4px;
         }
-        
-        .manifesto-content {
+
+        .callout {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .invitation-note {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Form */
+        .apply-toggle {
+            color: var(--text);
+            text-decoration: underline;
+            text-decoration-color: var(--text);
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            font: inherit;
+            transition: color 0.2s ease;
+        }
+
+        .apply-toggle:hover {
+            color: var(--red);
+            text-decoration-color: var(--red);
+        }
+
+        .form-container {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            margin-bottom: 2rem;
+            transition: max-height 0.5s ease;
         }
-        
-        .manifesto-content.expanded {
-            max-height: 2000px;
+
+        .form-container.expanded {
+            max-height: 800px;
         }
-        
-        .application-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+        .form-container form {
             margin-top: 2rem;
         }
-        
-        .application-content.expanded {
-            max-height: 1000px;
-        }
-        
-        .application-form {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: clamp(0.875rem, 1.6vw, 1rem);
-            line-height: 1.7;
+
+        .form-container label {
+            display: block;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            max-width: 580px;
-            margin: 0 auto;
-            padding: 2rem 0;
-        }
-
-        .manifesto {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: clamp(0.875rem, 1.6vw, 1rem);
-            line-height: 1.7;
-            color: var(--text-secondary);
-            max-width: 580px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        
-        .manifesto p {
-            margin-bottom: 1.2em;
-        }
-        
-        .manifesto strong {
-            color: var(--text);
-        }
-        
-        .principles-list {
-            list-style: decimal;
-            text-align: left;
-            margin-bottom: 1.5em;
-            padding-left: 1.5em;
-        }
-        
-        .principles-list li {
-            margin-bottom: 0.75em;
-            line-height: 1.6;
-        }
-        
-        .actions {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 1.5em;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 8px 20px;
-            font-size: clamp(0.875rem, 1.6vw, 1rem);
-            text-decoration: none;
-            border: 1px solid rgba(192, 192, 192, 0.5);
-            background: linear-gradient(
-                180deg,
-                rgba(220, 220, 220, 0.2) 0%,
-                rgba(180, 160, 140, 0.15) 50%,
-                rgba(140, 120, 100, 0.2) 100%
-            );
-            color: rgba(255, 255, 255, 0.95);
-            cursor: pointer;
-            letter-spacing: 0.15em;
-            font-family: inherit;
-            text-transform: uppercase;
-            border-radius: 0;
-            font-weight: 500;
-            box-shadow: 
-                0 2px 8px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                inset 0 -1px 0 rgba(100, 80, 60, 0.4);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent 0%,
-                rgba(255, 255, 255, 0.3) 50%,
-                transparent 100%
-            );
-            transition: left 0.5s ease;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        .btn:hover {
-            border-color: rgba(255, 200, 180, 0.6);
-            background: linear-gradient(
-                180deg,
-                rgba(255, 220, 200, 0.25) 0%,
-                rgba(200, 160, 140, 0.2) 50%,
-                rgba(160, 120, 100, 0.25) 100%
-            );
-            box-shadow: 
-                0 2px 12px rgba(255, 100, 80, 0.3),
-                inset 0 1px 0 rgba(255, 240, 220, 0.5),
-                inset 0 -1px 0 rgba(120, 80, 60, 0.5);
-        }
-
-        .btn:focus {
-            outline: none;
-        }
-
-        .note {
-            font-size: clamp(0.75rem, 1.4vw, 0.875rem);
-            color: var(--text-secondary);
-            font-style: normal;
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        dialog {
-            max-width: 580px;
-            max-height: 85vh;
-            padding: 48px;
-            border: none;
-            background: var(--bg);
-            color: var(--text);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            border-radius: 20px;
-            animation: modalOpen 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            margin: auto;
-            overflow-y: auto;
-        }
-        
-        #requestDialog {
-            max-width: 420px;
-        }
-
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-        }
-        
-        @keyframes modalOpen {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        dialog h2 {
-            font-size: clamp(1.75rem, 4.5vw, 2.25rem);
-            font-weight: 700;
             margin-bottom: 0.5rem;
-            text-align: center;
-            text-transform: lowercase;
-            letter-spacing: -0.01em;
-        }
-        
-        .dialog-note {
-            font-size: clamp(0.875rem, 1.6vw, 1rem);
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: 2rem;
-            font-style: italic;
         }
 
-        dialog p {
-            font-size: clamp(1.125rem, 2.4vw, 1.375rem);
-            line-height: 1.7;
-            margin-bottom: 1.5em;
-            color: var(--text-secondary);
-        }
-        
-        .manifesto {
-            text-align: left;
-            max-width: 100%;
-        }
-        
-        .manifesto p {
-            margin-bottom: 1.2em;
-        }
-        
-        .manifesto p:last-of-type {
-            margin-bottom: 1.5em;
-        }
-
-        dialog .btn {
-            display: block;
-            margin: 0 auto;
-        }
-
-        form {
+        .form-container input,
+        .form-container textarea {
             width: 100%;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            font-size: clamp(0.875rem, 1.6vw, 1rem);
-            margin-bottom: 8px;
-            letter-spacing: 0.02em;
-            font-weight: 400;
-            color: var(--text-secondary);
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 16px 20px;
-            font-size: 1rem;
-            font-family: inherit;
-            border: 1px solid var(--border);
-            background: var(--bg);
+            padding: 10px 0;
+            margin-bottom: 1.5rem;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            background: transparent;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.95rem;
             color: var(--text);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border-radius: 12px;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+            transition: border-color 0.2s ease;
         }
 
-        textarea {
+        .form-container input:focus,
+        .form-container textarea:focus {
+            border-color: var(--text);
+        }
+
+        .form-container textarea {
+            min-height: 100px;
             resize: vertical;
-            min-height: 60px;
-            line-height: 1.5;
         }
 
-        .char-counter {
-            font-size: 0.875rem;
+        .form-container button[type="submit"] {
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: none;
+            border: 1px solid var(--text);
             color: var(--text);
-            margin-top: 4px;
-            text-align: right;
-            opacity: 0.6;
+            padding: 10px 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .form-note {
-            font-size: 0.875rem;
-            color: var(--text);
-            margin-top: 12px;
-            font-style: normal;
-            text-align: center;
-            opacity: 0.7;
+        .form-container button[type="submit"]:hover {
+            background: var(--text);
+            color: var(--bg);
         }
 
         .form-confirmation {
-            padding: 20px;
-            background: var(--bg-secondary);
-            border: none;
-            margin-top: 24px;
-            font-size: 1rem;
             display: none;
-            font-style: normal;
-            text-align: center;
-            border-radius: 12px;
+            font-style: italic;
             color: var(--text-secondary);
+            margin-top: 2rem;
         }
 
-        .form-confirmation.show {
+        .form-confirmation.visible {
             display: block;
         }
 
-        @media (max-width: 767px) {
-            body {
-                padding: 24px;
-            }
+        .footer {
+            margin-top: 4rem;
+        }
 
-            dialog {
-                padding: 32px 24px;
-                max-width: calc(100vw - 48px);
+        .meta {
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .closer {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
             }
         }
     </style>
 </head>
 <body>
     <main>
-        <h1>The Garage</h1>
-        <p class="subtitle">a runway for what we'll actually wear</p>
-        <p class="meta">san francisco        spring 2026</p>
-        
-        <button type="button" class="why-link" id="toggleWhy">why?</button>
-        
-        <div class="manifesto-content" id="manifestoContent">
-            <div class="manifesto">
-                <p>the future isn't something you put on for a demo. it's what you wear every day.</p>
-                
-                <p>this is a runway for garments where technology belongs in the silhouette — not bolted on, not announced, just there. pieces that make you want to be seen in them.</p>
-                
-                <ol class="principles-list">
-                    <li>no nostalgia. no retrofuturism. no decade references. no costume logic.</li>
-                    <li>a new silhouette language — not trend-adjacent.</li>
-                    <li>wearable in daylight, not just on stage.</li>
-                    <li>the piece must create desire, not curiosity.</li>
-                    <li>beauty first: proportion, restraint, finish.</li>
-                    <li>tech must belong in the look — never the point.</li>
-                    <li>if it reads as a demo, it's out.</li>
-                    <li>if it needs explanation, it's not ready.</li>
-                    <li>it should make someone want to be seen in it.</li>
-                </ol>
-            </div>
+        <p class="landing reveal">It wasn't always like this.</p>
+
+        <div class="section">
+            <p class="reveal">San Francisco gave the world blue jeans, the derby jacket, and bell bottoms. Yet in much of the 21st century, this city has prioritized efficiency over craftsmanship. Unfortunately, the modern uniform of the city speaks for itself.</p>
+
+            <p class="reveal">Everything about how we live, work, and interact has shifted in the last few years. The phone is leaving our pockets, redistributing itself across necklines, wrists, waistbands, becoming the garment itself. This calls for design that responds to where on the body it belongs: how it moves, how it falls, how it catches light. We now have machine learning, stretchable electronics, electrochromic materials, nanofabrication. All of it ready to adapt to posture, flex at the wrist, illuminate with gesture, drape the neckline.</p>
+
+            <p class="reveal">When you think '60s, '70s, '80s, a distinct silhouette comes to mind. The decades since blur together. Y2K is back. So are the '90s. So is everything else. Technology has entered fashion before, but rarely has it entered beautifully. McQueen's robot-painted dress, Chalayan's transforming garments, Van Herpen's 3D-printed couture proved it could be done.</p>
+
+            <p class="reveal">But by and large, we're not designing the future. We've been recycling. San Francisco, the city of the future, has everything needed to give the dawning decade its defining silhouette, and every reason for designers to come build it.</p>
+
+            <p class="reveal">The only thing that's been missing is the runway.</p>
         </div>
-        
-        <p class="note">NOW ACCEPTING COMMITTEE APPLICATIONS</p>
-        <button type="button" class="why-link" id="toggleRequest">apply</button>
-        
-        <div class="application-content" id="applicationContent">
-            <div class="application-form">
-                <form id="requestForm" aria-live="polite">
-                    <div class="form-group">
-                        <label for="twitter">twitter/x</label>
-                        <input type="text" id="twitter" name="twitter" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="link">portfolio</label>
-                        <input type="url" id="link" name="link" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="taste">share something you think is well-designed</label>
-                        <textarea id="taste" name="taste" maxlength="200" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">submit</button>
-                    <div class="form-confirmation" id="confirmation" role="status">
-                        received. we'll be in touch.
-                    </div>
-                </form>
-            </div>
+
+        <hr class="reveal">
+
+        <h2 class="reveal">Principles</h2>
+
+        <ul class="roman-list">
+            <li class="reveal"><span class="numeral">I.</span> The engineering is not underneath. The design is not on top. They are the same layer.</li>
+            <li class="reveal"><span class="numeral">II.</span> Wearable is not enough. It should be worth wearing.</li>
+            <li class="reveal"><span class="numeral">III.</span> If it isn't beautiful, nothing else matters.</li>
+        </ul>
+
+        <hr class="reveal">
+
+        <h2 class="reveal">Criteria</h2>
+
+        <ul class="roman-list">
+            <li class="reveal"><span class="numeral">I.</span> No nostalgia. No retrofuturism.</li>
+            <li class="reveal"><span class="numeral">II.</span> If it's still a prototype, it's not ready for us yet.</li>
+            <li class="reveal"><span class="numeral">III.</span> All pieces are expected to fit standard high fashion model measurements.</li>
+            <li class="reveal"><span class="numeral">IV.</span> If it's hardware, it must be wearable or walkable.</li>
+            <li class="reveal"><span class="numeral">V.</span> Any medium is welcome. Advance the material, the method, or the silhouette.</li>
+        </ul>
+
+        <hr class="reveal">
+
+        <p class="callout reveal">We are looking for the best in the world at what they do, ready to debut something that has yet to exist.</p>
+
+        <p class="invitation-note reveal">Our runway lineup is currently invitation-only. Open calls begin next phase.</p>
+
+        <p class="reveal" style="margin-top: 2rem;">Committee applications are open. <button type="button" class="apply-toggle" id="toggleApply">Apply</button></p>
+
+        <div class="form-container" id="formContainer">
+            <form id="applyForm">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="response">Name something beautiful that most people overlook.</label>
+                <textarea id="response" name="response" required></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+
+            <p class="form-confirmation" id="confirmation">Thank you. We'll be in touch.</p>
+        </div>
+
+        <div class="footer reveal">
+            <p class="meta">The Garage &middot; San Francisco &middot; Autumn/Winter 2026</p>
+            <p class="closer">In this city, everything beautiful started in a garage.</p>
         </div>
     </main>
 
-
-
-
     <script>
-        const toggleWhy = document.getElementById('toggleWhy');
-        const manifestoContent = document.getElementById('manifestoContent');
-        const toggleRequest = document.getElementById('toggleRequest');
-        const applicationContent = document.getElementById('applicationContent');
-        const requestForm = document.getElementById('requestForm');
-        const confirmation = document.getElementById('confirmation');
-
-        // Split text into individual letters
-        function splitTextIntoLetters(element) {
-            const text = element.textContent;
-            element.innerHTML = '';
-            for (let char of text) {
-                const span = document.createElement('span');
-                span.className = 'letter';
-                span.textContent = char === ' ' ? '\u00A0' : char;
-                element.appendChild(span);
-            }
-        }
-
-        // Split only specific text elements
-        document.querySelectorAll('h1, .subtitle, .meta').forEach(splitTextIntoLetters);
-
-        // Smooth cursor tracking with requestAnimationFrame
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        let animationFrameId = null;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            const x = (mouseX / window.innerWidth) * 100;
-            const y = (mouseY / window.innerHeight) * 100;
-            document.body.style.setProperty('--mouse-x', `${x}%`);
-            document.body.style.setProperty('--mouse-y', `${y}%`);
-
-            if (!animationFrameId) {
-                animationFrameId = requestAnimationFrame(updateLetters);
-            }
-        });
-
-        function updateLetters() {
-            const letters = document.querySelectorAll('.letter');
-            const maxDistance = 150;
-            
-            letters.forEach(letter => {
-                const rect = letter.getBoundingClientRect();
-                const letterX = rect.left + rect.width / 2;
-                const letterY = rect.top + rect.height / 2;
-                
-                const deltaX = letterX - mouseX;
-                const deltaY = letterY - mouseY;
-                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                
-                if (distance < maxDistance) {
-                    const force = (maxDistance - distance) / maxDistance;
-                    const moveX = (deltaX / distance) * force * 25;
-                    const moveY = (deltaY / distance) * force * 25;
-                    
-                    letter.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                } else {
-                    letter.style.transform = 'translate(0, 0)';
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-            
-            animationFrameId = null;
-        }
-
-        toggleWhy.addEventListener('click', () => {
-            manifestoContent.classList.toggle('expanded');
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
         });
 
-        toggleRequest.addEventListener('click', () => {
-            applicationContent.classList.toggle('expanded');
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        document.getElementById('toggleApply').addEventListener('click', () => {
+            document.getElementById('formContainer').classList.toggle('expanded');
         });
 
-        requestForm.addEventListener('submit', (e) => {
+        document.getElementById('applyForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            confirmation.classList.add('show');
-            setTimeout(() => {
-                applicationContent.classList.remove('expanded');
-                requestForm.reset();
-                confirmation.classList.remove('show');
-            }, 2000);
-        });
+            const form = e.target;
+            const data = {
+                name: form.name.value,
+                email: form.email.value,
+                response: form.response.value
+            };
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                manifestoContent.classList.remove('expanded');
-                applicationContent.classList.remove('expanded');
+            try {
+                const res = await fetch('/api/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (res.ok) {
+                    form.style.display = 'none';
+                    document.getElementById('confirmation').classList.add('visible');
+                }
+            } catch (err) {
+                form.style.display = 'none';
+                document.getElementById('confirmation').classList.add('visible');
             }
         });
     </script>
